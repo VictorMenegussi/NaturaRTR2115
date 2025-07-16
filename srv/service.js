@@ -1,7 +1,7 @@
 const cds = require('@sap/cds');
 
 module.exports = cds.service.impl(async function () {
-    const { Parameters, A_CompanyCodeVH, A_CostCenterVH, A_DocumentTypeVH, A_GLAccountVH, A_PostingKeyVH} = this.entities;
+    const { Parameters, A_CompanyCodeVH, A_CostCenterVH, A_DocumentTypeVH, A_GLAccountVH, A_PostingKeyVH } = this.entities;
 
     this.before('CREATE', Parameters, async (req) => {
         const { empresa, escopo_ID, processo_ID, periodicidade_ID } = req.data;
@@ -38,4 +38,61 @@ module.exports = cds.service.impl(async function () {
             return request.reject(error);
         }
     });
+
+    this.on('READ', 'EscopoValues', (req) => {
+        if (req.locale === 'pt') {
+            return [
+                { ID: 1, description: 'Baixa de títulos' },
+                { ID: 2, description: 'Gestão de cobrança' }
+            ]
+        } else if (req.locale === 'es') {
+            return [
+                { ID: 1, description: 'Baja de títulos' },
+                { ID: 2, description: 'Gestión de cobranza' }
+            ]
+        } else {
+            return [
+                { ID: 1, description: 'Title write-off' },
+                { ID: 2, description: 'Collection management' }
+            ]
+        }
+    })
+
+    this.on('READ', 'ProcessoValues', (req) => {
+        if (req.locale === 'pt') {
+            return [
+                { ID: 1, description: 'Reclassificação' },
+                { ID: 2, description: 'Baixa' }
+            ]
+        } else if (req.locale === 'es') {
+            return [
+                { ID: 1, description: 'Reclasificación' },
+                { ID: 2, description: 'Baja' }
+            ]
+        } else {
+            return [
+                { ID: 1, description: 'Reclassification' },
+                { ID: 2, description: 'Write-off' }
+            ]
+        }
+    })
+
+    this.on('READ', 'PeriodicidadeValues', (req) => {
+        if (req.locale === 'pt') {
+            return [
+                { ID: 1, description: 'Diário' },
+                { ID: 2, description: 'Mensal' }
+            ]
+        } else if (req.locale === 'es') {
+            return [
+                { ID: 1, description: 'Diario' },
+                { ID: 2, description: 'Mensual' }
+            ]
+        } else {
+            return [
+                { ID: 1, description: 'Daily' },
+                { ID: 2, description: 'Monthly' }
+            ]
+        }
+    })
 });
