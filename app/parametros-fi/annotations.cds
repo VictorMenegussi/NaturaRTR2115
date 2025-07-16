@@ -384,6 +384,27 @@ annotate service.Parameters with {
 
 };
 
+annotate service.EscopoValues with {
+    ID @Common.Text : {
+        $value : description,
+        ![@UI.TextArrangement] : #TextLast
+    };
+};
+
+annotate service.ProcessoValues with {
+    ID @Common.Text : {
+        $value : description,
+        ![@UI.TextArrangement] : #TextLast
+    };
+};
+
+annotate service.PeriodicidadeValues with {
+    ID @Common.Text : {
+        $value : description,
+        ![@UI.TextArrangement] : #TextLast
+    };
+};
+
 annotate service.A_CompanyCodeVH with {
     @title: '{@i18n>code}'
     CompanyCode;

@@ -24,17 +24,17 @@ entity Parameters : cuid, managed {
 
 entity ProcessoValues {
   key ID : Integer;
-  description : localized String;
+  description : String;
 }
 
 entity PeriodicidadeValues {
   key ID : Integer;
-  description : localized String;
+  description : String;
 }
 
 entity EscopoValues {
   key ID : Integer;
-  description : localized String;
+  description : String;
 }
 
 // entity tipoDocumentoValues {
