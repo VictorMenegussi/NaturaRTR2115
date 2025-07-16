@@ -1,0 +1,80 @@
+{
+    "[production]": {
+        "requires": {
+            "db": {
+                "kind": "hana"
+            },
+            "auth": {
+                "kind": "xsuaa"
+            },
+            "Z_API_RTR2113_VH": {
+                "kind": "odata-v2",
+                "csrf": true,
+                "csrfInBatch": true,
+                "model": "srv/external/ZFI_API_RTR2115_VH",
+                "credentials": {
+                    "destination": "S4DEST_RTR2075",
+                    "path": "/sap/opu/odata/sap/ZFI_API_RTR2115_VH",
+                    "forwardAuthToken": true
+                }
+            }
+        }
+    },
+    "[hybrid]": {
+        "requires": {
+            "db": {
+                "kind": "hana"
+            },
+            "auth": {
+                "kind": "basic-auth",
+                "users": {
+                    "admin": {
+                        "password": "admin"
+                    },
+                    "viewer": {
+                        "password": "viewer"
+                    }
+                }
+            },
+            "ZFI_API_RTR2115_VH": {
+                "kind": "odata-v2",
+                "csrf": true,
+                "csrfInBatch": true,
+                "model": "srv/external/ZFI_API_RTR2115_VH",
+                "credentials": {
+                    "destination": "S4DEST_RTR2075",
+                    "path": "/sap/opu/odata/sap/ZFI_API_RTR2115_VH",
+                    "forwardAuthToken": true
+                }
+            }
+        }
+    },
+    "[development]": {
+        "requires": {
+            "db": {
+                "kind": "hana"
+            },
+            "auth": {
+                "kind": "basic-auth",
+                "users": {
+                    "admin": {
+                        "password": "admin"
+                    },
+                    "viewer": {
+                        "password": "viewer"
+                    }
+                }
+            },
+            "ZFI_API_RTR2115_VH": {
+                "kind": "odata-v2",
+                "csrfBatch": true,
+                "model": "srv/external/ZFI_API_RTR2115_VH",
+                "credentials": {
+                    "destination": "S4DEST_RTR2075",
+                    "path": "/sap/opu/odata/sap/ZFI_API_RTR2115_VH",
+                    "forwardAuthToken": true
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,57 @@
+{
+  "name": "natura-fi-parameters",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap-cloud-sdk/resilience": "3.25.0",
+    "@sap-cloud-sdk/connectivity": "^3.12.1",
+    "@sap-cloud-sdk/http-client": "^3.12.1",
+    "@sap/cds": "^8.5",
+    "@cap-js/hana": "^x",
+    "@sap/cds-dk": "^8.5",
+    "@sap/hana-client": "^2.23.24",
+    "@sap/odata-server": "^1",
+    "@sap/ui5-builder-webide-extension": "^1",
+    "@sap/xsenv": "^3",
+    "@sap/xssec": "^4",
+    "express": "^4"
+  },
+  "scripts": {
+    "lint": "",
+    "undeploy": "cf undeploy natura-fi-parameters --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 0",
+    "start": "cds-serve",
+    "watch-parametros-fi": "cds watch --open parametros-fi/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-project1": "cds watch --open project1/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-affasf": "cds watch --open affasf/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "cds": {
+    "sql": {
+      "native_hana_associations": false
+    },
+    "requires": {
+      "ZFI_API_RTR2115_VH": {
+        "kind": "odata-v2",
+        "csrf": true,
+        "csrfInBatch": true,
+        "model": "srv/external/ZFI_API_RTR2115_VH",
+        "credentials": {
+          "destination": "S4DEST_RTR2075",
+          "path": "/sap/opu/odata/sap/ZFI_API_RTR2115_VH",
+          "forwardAuthToken": true
+        }
+      },
+      "metadados_parametros_fi": {
+        "kind": "odata",
+        "model": "srv/external/metadados_parametros-fi"
+      }
+    }
+  },
+  "sapux": [
+    "app/parametros-fi"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+    "name": "approuter",
+    "dependencies": {
+        "@sap/approuter": "^14",
+        "@sap/di.code-validation.json": "^1.0.13"
+    },
+    "engines": {
+        "node": "^20"
+    },
+    "scripts": {
+        "start": "node node_modules/@sap/approuter/approuter.js"
+    }
+}
